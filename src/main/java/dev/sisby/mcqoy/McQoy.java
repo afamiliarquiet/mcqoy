@@ -2,6 +2,7 @@ package dev.sisby.mcqoy;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.mojang.blaze3d.Blaze3D;
 import dev.isxander.yacl3.api.ButtonOption;
 import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.ListOption;
@@ -212,7 +213,7 @@ public class McQoy implements ModInitializer {
 				Component.nullToEmpty(String.format("Only editable via %s", (config.family().isEmpty() ? "" : (config.family() + "/")) + config.id() + ".toml")).copy().withStyle(ChatFormatting.YELLOW),
 				Component.nullToEmpty("Exit the game first.").copy().withStyle(ChatFormatting.RED)
 			)).toArray(Component[]::new);
-		category.option(ButtonOption.createBuilder().name(displayName).text(Component.nullToEmpty("Edit in file...")).description(OptionDescription.of(desc)).action((s, o) -> Util.getPlatform().openFile(FabricLoader.getInstance().getConfigDir().toFile())).build());
+		category.option(ButtonOption.createBuilder().name(displayName).text(Component.nullToEmpty("Edit in file...")).description(OptionDescription.of(desc)).action((s, o) -> Blaze3D.openPath(FabricLoader.getInstance().getConfigDir())).build());
 	}
 
 	private static Color colorOrWhite(String string, boolean alpha) {
